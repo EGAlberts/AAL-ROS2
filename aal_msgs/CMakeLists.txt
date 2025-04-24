@@ -17,6 +17,7 @@ find_package(rcl_interfaces REQUIRED)
 find_package(rosidl_default_generators REQUIRED)
 
 rosidl_generate_interfaces(${PROJECT_NAME}
+  "srv/AdaptArchitectureTactical.srv"
   "srv/AdaptArchitectureExternal.srv"
   "srv/AdaptArchitecture.srv"
   "msg/AdaptationState.msg"

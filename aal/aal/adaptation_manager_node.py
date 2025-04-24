@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import rclpy
 from rclpy.node import Node
-from aal_msgs.srv import AdaptArchitectureExternal, AdaptArchitecture
+from aal_msgs.srv import AdaptArchitectureExternal, AdaptArchitecture, AdaptArchitectureTactical
 from rcl_interfaces.msg import Parameter
 from aal_msgs.msg import AdaptationState, Configuration, Adaptation
 from rclpy.callback_groups import MutuallyExclusiveCallbackGroup
@@ -26,10 +26,11 @@ def value_from_param(param_msg):
     if(param_type == 9): return param_msg.value.string_array_value
 
 class AdaptationManager(Node):
-    
 
     EXT_SERV_NAME = '/adapt_architecture_external'
     INT_SERV_NAME = '/adapt_architecture'
+    TAC_SERV_NAME = '/adapt_architecture_tactical'
+
 
     def __init__(self): 
         super().__init__('adaptation_manager')
@@ -38,6 +39,8 @@ class AdaptationManager(Node):
 
         self.srv_ext_adapt = self.create_service(AdaptArchitectureExternal,self.EXT_SERV_NAME,self.ext_adaptation_requested)
         self.srv_adapt = self.create_service(AdaptArchitecture, self.INT_SERV_NAME,self.adaptation_requested)
+        # self.srv_tac_adapt = self.create_service(AdaptArchitectureTactical, self.TAC_SERV_NAME,self.tac_adaptation_requested)
+
 
         self.reporting = [0,0]
 
@@ -217,6 +220,16 @@ class AdaptationManager(Node):
 
         response.success = all(adaptation_results)
         return response 
+    
+    def tac_adaptation_requested(self, request, response):
+        self.get_logger().info('\n\n tactical adaptation \n\n')
+        
+        self.get_logger().info(str(request.child_description))
+
+        response.success = True
+        return response
+
+
        
     
     def ext_adaptation_requested(self, request, response):
