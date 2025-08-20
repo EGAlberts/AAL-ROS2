@@ -1,3 +1,4 @@
-string[] child_description
+ActionNodeDescription child_description
+builtin_interfaces/Duration period
 ---
 bool success

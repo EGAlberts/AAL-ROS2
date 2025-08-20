@@ -24,7 +24,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/Adaptation.msg"
   "msg/AdaptationOptions.msg"
   "msg/Configuration.msg"
-
+  "msg/ActionNodeDescription.msg"
   DEPENDENCIES builtin_interfaces rcl_interfaces lifecycle_msgs
 )
 

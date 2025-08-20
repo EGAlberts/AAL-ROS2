@@ -1,0 +1,2 @@
+string registration_name
+string action_name
