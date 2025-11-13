@@ -1,4 +1,5 @@
 ActionNodeDescription child_description
+string[] requirements
 builtin_interfaces/Duration period
 ---
 bool success
