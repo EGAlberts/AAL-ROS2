@@ -50,8 +50,8 @@ class AdaptationManager(Node):
                                                  self.ext_adaptation_requested)
         self.srv_adapt = self.create_service(AdaptArchitecture, self.INT_SERV_NAME,
                                              self.adaptation_requested)
-        self.srv_tac_adapt = self.create_service(AdaptArchitectureTactical, self.TAC_SERV_NAME,
-                                                 self.tac_adaptation_requested)
+        # self.srv_tac_adapt = self.create_service(AdaptArchitectureTactical, self.TAC_SERV_NAME,
+        #                                          self.tac_adaptation_requested)
 
         self.reporting = [0, 0]
 
@@ -115,6 +115,8 @@ class AdaptationManager(Node):
         return config_list
 
     def create_set_param_client(self, node_name):
+        if (node_name.startswith('/')):
+            node_name = node_name[1:]
         self.set_parameter_client_dict[node_name] = \
             self.create_client(SetParameters, '/' + node_name + '/set_parameters',
                                callback_group=MutuallyExclusiveCallbackGroup())
@@ -126,6 +128,8 @@ class AdaptationManager(Node):
                                callback_group=MutuallyExclusiveCallbackGroup())
 
     def execute_rp_adaptation(self, param_msg, node_name):
+        if (node_name.startswith('/')):
+            node_name = node_name[1:]
         if ((param_msg is None) or (node_name is None)):
             self.get_logger().error("Unknown or unspecified type of adaptation")
             return False
