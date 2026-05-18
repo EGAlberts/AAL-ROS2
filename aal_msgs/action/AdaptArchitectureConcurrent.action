@@ -1,0 +1,7 @@
+ActionNodeDescription child_description
+string[] requirements
+builtin_interfaces/Duration period
+---
+# Should never return a result
+---
+Adaptation[] adaptations_executed
