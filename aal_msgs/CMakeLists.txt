@@ -13,6 +13,7 @@ find_package(ament_cmake REQUIRED)
 
 find_package(lifecycle_msgs REQUIRED)
 find_package(rcl_interfaces REQUIRED)
+find_package(unique_identifier_msgs REQUIRED)
 
 find_package(rosidl_default_generators REQUIRED)
 
@@ -25,6 +26,7 @@ rosidl_generate_interfaces(${PROJECT_NAME}
   "msg/AdaptationOptions.msg"
   "msg/Configuration.msg"
   "msg/ActionNodeDescription.msg"
+  "action/AdaptArchitectureConcurrent.action"
   DEPENDENCIES builtin_interfaces rcl_interfaces lifecycle_msgs
 )
 

@@ -20,7 +20,7 @@
 
   <depend>builtin_interfaces</depend>
   <depend>rcl_interfaces</depend>
-
+  <depend>unique_identifier_msgs</depend>
 
  
   
